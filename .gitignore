@@ -1,0 +1,4 @@
+.vagrant
+vcap
+dev_setup.tar.gz
+*.pyc
