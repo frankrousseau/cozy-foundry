@@ -26,7 +26,7 @@ Install the command-line client:
 
 Setup our VM as our target:
 
-    $ vmc target http://api.vcap.me:8080/
+    $ vmc target http://api.vcap.me:8888/
 
 Register a user account:
 
