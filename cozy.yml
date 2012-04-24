@@ -10,6 +10,10 @@ jobs:
             - mongodb
     - ccdb
     - health_manager
+    - dea
+    - mongodb_gateway
+    - mongodb_node:
+        index: "0"
 dea:
     runtimes:
         - node06
