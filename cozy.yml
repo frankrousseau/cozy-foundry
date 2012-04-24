@@ -1,1 +1,15 @@
-../testvm/cozy.yml
+---
+deployment:
+  name: "cozy"
+jobs:
+  install:
+    - nats_server
+    - router
+    - cloud_controller:
+        builtin_services:
+            - mongodb
+    - ccdb
+    - health_manager
+dea:
+    runtimes:
+        - node06
