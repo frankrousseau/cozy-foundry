@@ -1,4 +1,4 @@
 .vagrant
-vcap
+cloudfoundry
 dev_setup.tar.gz
 *.pyc

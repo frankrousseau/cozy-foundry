@@ -1,0 +1,19 @@
+---
+deployment:
+  name: "cozy"
+jobs:
+  install:
+    - nats_server:
+        host: "192.168.33.10"
+        port: "4222"
+        user: "nats"
+        password: "nats"
+    - cloud_controller:
+        builtin_services:
+            - mongodb
+    - ccdb
+    - health_manager
+    - router
+    - mongodb_node:
+        index: "0"
+    - mongodb_gateway

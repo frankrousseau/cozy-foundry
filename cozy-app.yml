@@ -1,0 +1,15 @@
+---
+deployment:
+  name: "cozy-app"
+jobs:
+  install:
+    - dea
+  installed:
+    - nats_server:
+        host: "192.168.33.10"
+        port: "4222"
+        user: "nats"
+        password: "nats"
+dea:
+  runtimes:
+    - node06
