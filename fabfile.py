@@ -113,8 +113,9 @@ def setup_cloud_foundry(config, extra_gems=None):
                 run('gem install %s' % gem)
 
     # Disable chef-client daemon
-    sudo('/etc/init.d/chef-client stop')
-    sudo('update-rc.d -f chef-client remove')
+    if fabtools.files.is_file('/etc/init.d/chef-client'):
+        sudo('/etc/init.d/chef-client stop')
+        sudo('update-rc.d -f chef-client remove')
 
 
 @task
