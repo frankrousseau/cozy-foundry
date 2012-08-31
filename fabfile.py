@@ -65,14 +65,16 @@ def init_cloud_foundry():
 
     local('mkdir -p cloudfoundry')
 
-    # Clone vcap repo
-    if not os.path.exists('cloudfoundry/vcap'):
-        local('git clone git://github.com/cloudfoundry/vcap.git cloudfoundry/vcap')
+    for repo in ['vcap', 'cloud_controller', 'dea', 'router', 'stager']:
 
-    # Pull latest changes
-    with lcd('cloudfoundry/vcap'):
-        local('git submodule update --init')
-        local('git pull')
+        # Clone repo
+        if not os.path.exists('cloudfoundry/%s' % repo):
+            local('git clone git://github.com/cloudfoundry/%s.git cloudfoundry/%s' % (repo, repo))
+
+        # Pull latest changes
+        with lcd('cloudfoundry/%s' % repo):
+            local('git submodule update --init')
+            local('git pull')
 
     # Package the setup tools
     with lcd('cloudfoundry'):
@@ -100,7 +102,7 @@ def setup_cloud_foundry(config, extra_gems=None):
         # Use vcap repo in Vagrant shared folder
         # if we're running inside a local VM
         if fabtools.files.is_dir('/cloudfoundry/vcap'):
-            options.append('-r /cloudfoundry/vcap')
+            options.append('-r /cloudfoundry')
 
         run('./vcap_dev_setup ' + ' '.join(options))
 
